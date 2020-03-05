@@ -1,0 +1,36 @@
+AI moves first!
+    |    |    
+ ============== 
+    |    |  X  
+ ============== 
+    |    |    
+Which cell would you like to put an 'O' in?  starting from top left:0,0 0,1 0,2 1,0 1,1 1,2 2,0 2,1 2,2
+1,0
+  X  |    |    
+ ============== 
+  O  |    |  X  
+ ============== 
+    |    |    
+Which cell would you like to put an 'O' in?  starting from top left:0,0 0,1 0,2 1,0 1,1 1,2 2,0 2,1 2,2
+0,2
+  X  |  X  |  O  
+ ============== 
+  O  |    |  X  
+ ============== 
+    |    |    
+Which cell would you like to put an 'O' in?  starting from top left:0,0 0,1 0,2 1,0 1,1 1,2 2,0 2,1 2,2
+2,0
+  X  |  X  |  O  
+ ============== 
+  O  |  X  |  X  
+ ============== 
+  O  |    |    
+Which cell would you like to put an 'O' in?  starting from top left:0,0 0,1 0,2 1,0 1,1 1,2 2,0 2,1 2,2
+2,1
+  X  |  X  |  O  
+ ============== 
+  O  |  X  |  X  
+ ============== 
+  O  |  O  |  X  
+Winner is X
+
