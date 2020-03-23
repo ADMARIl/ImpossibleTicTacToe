@@ -43,8 +43,7 @@ def check_for_winner():
             (board[0][0] == player and board[1][1] == player and board[2][2]) or  # tl to br diag
             (board[2][0] == player and board[1][1] == player and board[0][2])):  # bl to tr diag
         return player
-    else:
-        return False
+    return 0
 
 
 def minimax(board, depth, isMaximizing):
@@ -66,15 +65,17 @@ def minimax(board, depth, isMaximizing):
         curr_board[loc[0]][loc[1]] = ai
         rank = minimax(curr_board, depth - 1, not isMaximizing)
 
-    print(board, depth, isMaximizing)
+    return 0
 
 
 def print_board():
     for i in range(len(board)):
         for j in range(len(board[i])):
-            print(board[i][j], end=' | ')
+            print(board[i][j], end="")
+            if j + 1 != len(board[i]):
+                print("  |  ", end="")
         if i + 1 != len(board):
-            print("==============")
+            print("\n==============")
 
 
 def find_best_move():
@@ -82,7 +83,28 @@ def find_best_move():
     # Finds the best move for AI starts the minimax recursion
     # #####################################################
 
-    minimax(board, 1, True)
+    # find all the empty cells
+    cells = []
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            if board[i][j] == '':
+                cells.append([i, j])
+    # create our starting best move to compare against
+    best_move_board = board
+    x, y = cells[0]
+    best_move_board[x][y] = ai
+    best_move = cells[0]
+    best_move_val = minimax(best_move_board, 0, True)
+    # check all the empty cells to see if they are the best move
+    for move in cells:
+        print(move)
+        # crete a temporary board that we can put the move into
+        curr_board = board
+        curr_board[move[0]][move[1]] = ai
+        curr_value = minimax(curr_board, 0, True)
+        if curr_value > best_move_val:
+            best_move = move
+    return best_move
 
 
 def main():
