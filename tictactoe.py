@@ -53,7 +53,7 @@ def minimax(m_board, depth, isMaximizing):
     # Recursively alternates between min and max
     # #####################################################
     curr_board = copy.deepcopy(m_board)
-    value = 0
+    # value = 1
     # check if the current board state is a terminal state
     player = ai
     if ((curr_board[0][0] == player and curr_board[1][0] == player and curr_board[2][0]) or  # left
@@ -64,7 +64,7 @@ def minimax(m_board, depth, isMaximizing):
             (curr_board[2][0] == player and curr_board[2][1] == player and curr_board[2][2]) or  # bottom
             (curr_board[0][0] == player and curr_board[1][1] == player and curr_board[2][2]) or  # tl to br diag
             (curr_board[2][0] == player and curr_board[1][1] == player and curr_board[0][2])):  # bl to tr diag
-        return value
+        return depth
     player = human
     if ((curr_board[0][0] == player and curr_board[1][0] == player and curr_board[2][0]) or  # left
             (curr_board[0][1] == player and curr_board[1][1] == player and curr_board[2][1]) or  # center
@@ -74,7 +74,7 @@ def minimax(m_board, depth, isMaximizing):
             (curr_board[2][0] == player and curr_board[2][1] == player and curr_board[2][2]) or  # bottom
             (curr_board[0][0] == player and curr_board[1][1] == player and curr_board[2][2]) or  # tl to br diag
             (curr_board[2][0] == player and curr_board[1][1] == player and curr_board[0][2])):  # bl to tr diag
-        return value
+        return depth
     # find the empty cells in our current board
     cells = []
     for i in range(len(curr_board)):
@@ -89,7 +89,7 @@ def minimax(m_board, depth, isMaximizing):
             curr_board_nest = copy.deepcopy(curr_board)
             curr_board_nest[move[0]][move[1]] = ai
             # recurse
-            value = minimax(curr_board_nest, depth+1, False)
+            value = minimax(curr_board_nest, depth + 1, False)
             best_val = max(best_val, value)
         return best_val
     # MIN
@@ -129,7 +129,7 @@ def find_best_move():
     best_move_board = copy.deepcopy(board)
     x, y = cells[0]
     best_move_board[x][y] = ai
-    best_move = cells[1]
+    best_move = cells[0]
     best_move_val = minimax(best_move_board, 0, True)
     # check all the empty cells to see if they are the best move
     for move in cells:
@@ -140,7 +140,7 @@ def find_best_move():
         curr_value = minimax(curr_board, 0, True)
         print(curr_value)
         # if the minimax tells us the current move is better, update the best move
-        if curr_value > best_move_val:
+        if curr_value < best_move_val:
             best_move = move
     return best_move
 
