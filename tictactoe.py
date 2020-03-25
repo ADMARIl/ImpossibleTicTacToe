@@ -25,23 +25,23 @@ def check_for_winner():
     # ###################Your code here####################
     # Code that checks for a winner
     # #####################################################
-    if check_player(ai) == ai:
+    if check_player(ai, board) == ai:
         return ai
-    elif check_player(human) == human:
+    elif check_player(human, board) == human:
         return human
     else:
         return 0
 
 
-def check_player(player):
-    if ((board[0][0] == player and board[1][0] == player and board[2][0] == player) or  # left
-            (board[0][1] == player and board[1][1] == player and board[2][1] == player) or  # center
-            (board[0][2] == player and board[1][2] == player and board[2][2] == player) or  # right
-            (board[0][0] == player and board[0][1] == player and board[0][2] == player) or  # top
-            (board[1][0] == player and board[1][1] == player and board[1][2] == player) or  # middle
-            (board[2][0] == player and board[2][1] == player and board[2][2] == player) or  # bottom
-            (board[0][0] == player and board[1][1] == player and board[2][2] == player) or  # tl to br diag
-            (board[2][0] == player and board[1][1] == player and board[0][2] == player)):  # bl to tr diag
+def check_player(player, c_board):
+    if ((c_board[0][0] == player and c_board[1][0] == player and c_board[2][0] == player) or  # left
+            (c_board[0][1] == player and c_board[1][1] == player and c_board[2][1] == player) or  # center
+            (c_board[0][2] == player and c_board[1][2] == player and c_board[2][2] == player) or  # right
+            (c_board[0][0] == player and c_board[0][1] == player and c_board[0][2] == player) or  # top
+            (c_board[1][0] == player and c_board[1][1] == player and c_board[1][2] == player) or  # middle
+            (c_board[2][0] == player and c_board[2][1] == player and c_board[2][2] == player) or  # bottom
+            (c_board[0][0] == player and c_board[1][1] == player and c_board[2][2] == player) or  # tl to br diag
+            (c_board[2][0] == player and c_board[1][1] == player and c_board[0][2] == player)):  # bl to tr diag
         return player
     else:
         return 0
@@ -67,29 +67,9 @@ def minimax(m_board, depth, isMaximizing):
 
     curr_board = copy.deepcopy(m_board)
     # check if the current board state is a terminal state
-    player = ai
-    if ((curr_board[0][0] == player and curr_board[1][0] == player and curr_board[2][0] == player) or  # left
-            (curr_board[0][1] == player and curr_board[1][1] == player and curr_board[2][1] == player) or  # center
-            (curr_board[0][2] == player and curr_board[1][2] == player and curr_board[2][2] == player) or  # right
-            (curr_board[0][0] == player and curr_board[0][1] == player and curr_board[0][2] == player) or  # top
-            (curr_board[1][0] == player and curr_board[1][1] == player and curr_board[1][2] == player) or  # middle
-            (curr_board[2][0] == player and curr_board[2][1] == player and curr_board[2][2] == player) or  # bottom
-            (curr_board[0][0] == player and curr_board[1][1] == player and curr_board[2][
-                2] == player) or  # tl to br diag
-            (curr_board[2][0] == player and curr_board[1][1] == player and curr_board[0][
-                2] == player)):  # bl to tr diag
+    if check_player(ai, curr_board) == ai:
         return scores[ai]
-    player = human
-    if ((curr_board[0][0] == player and curr_board[1][0] == player and curr_board[2][0] == player) or  # left
-            (curr_board[0][1] == player and curr_board[1][1] == player and curr_board[2][1] == player) or  # center
-            (curr_board[0][2] == player and curr_board[1][2] == player and curr_board[2][2] == player) or  # right
-            (curr_board[0][0] == player and curr_board[0][1] == player and curr_board[0][2] == player) or  # top
-            (curr_board[1][0] == player and curr_board[1][1] == player and curr_board[1][2] == player) or  # middle
-            (curr_board[2][0] == player and curr_board[2][1] == player and curr_board[2][2] == player) or  # bottom
-            (curr_board[0][0] == player and curr_board[1][1] == player and curr_board[2][
-                2] == player) or  # tl to br diag
-            (curr_board[2][0] == player and curr_board[1][1] == player and curr_board[0][
-                2] == player)):  # bl to tr diag
+    elif check_player(human, curr_board) == human:
         return scores[human]
     elif check_stalemate(curr_board):
         return scores['tie']
@@ -108,9 +88,10 @@ def minimax(m_board, depth, isMaximizing):
             curr_board_nest[move[0]][move[1]] = ai
             # recurse
             value = minimax(curr_board_nest, depth + 1, False)
+            curr_board_nest[move[0]][move[1]] = ''
             best_val = max(best_val, value)
-        #print(best_val)
-        return best_val * depth
+        # print(best_val)
+        return best_val
     # MIN
     else:
         best_val = p_inf
@@ -119,8 +100,11 @@ def minimax(m_board, depth, isMaximizing):
             curr_board_nest[move[0]][move[1]] = human
             # recurse
             value = minimax(curr_board_nest, depth + 1, True)
+            curr_board_nest[move[0]][move[1]] = ''
+
             best_val = min(best_val, value)
-        return best_val * depth
+        # print(best_val)
+        return best_val
 
 
 def print_board():
@@ -142,6 +126,7 @@ def find_best_move():
     # #####################################################
 
     if check_for_winner() != 0 or check_stalemate():
+        print("this shouldn't happen")
         return [-1, -1]
     # find all the empty cells
     cells = []
@@ -154,17 +139,19 @@ def find_best_move():
     x, y = cells[0]
     best_move_board[x][y] = ai
     best_move = cells[0]
-    best_move_val = minimax(best_move_board, 0, True)  # this could be positive infinity?
+    best_move_val = n_inf  # this could be positive infinity?
     # check all the empty cells to see if they are the best move
     for move in cells:
         # print(move)
         # crete a temporary board that we can put the move into
         curr_board = copy.deepcopy(board)
         curr_board[move[0]][move[1]] = ai
-        curr_value = minimax(curr_board, 0, True)
+        curr_value = minimax(curr_board, 0, False)
         # print(curr_value)
         # if the minimax tells us the current move is better, update the best move
-        if curr_value < best_move_val:
+        if curr_value > best_move_val:
+            # print(best_move, "has been usurped by", move)
+            best_move_val = curr_value
             best_move = move
     return best_move
 

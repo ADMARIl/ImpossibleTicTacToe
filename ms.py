@@ -7,7 +7,6 @@ from constraint import *
 #######################################
 
 class MS:
-    # size = 3
 
     def __init__(self, size):
         # self.name = name
@@ -52,14 +51,30 @@ class MS:
         # Loop through solutions
         # Print results
         for s in sols:
-            for row in range(3):
-                for col in range(3):
-                    print(str((s[row * 3 + col])), end='')
+            for row in range(n):
+                for col in range(n):
+                    print(str((s[row * n + col])), end=' ')
                 print("")
             print("")
 
 
 def main():
+    """
+    some_sols = [
+        {0: 1, 3: 4, 5: 6, 6: 7, 9: 9, 12: 14, 10: 12, 15: 15, 13: 3, 14: 2, 2: 13, 7: 10, 11: 5, 8: 8, 4: 11, 1: 16},
+        {0: 1, 3: 4, 5: 6, 6: 7, 9: 10, 12: 13, 10: 11, 15: 16, 13: 3, 14: 2, 8: 8, 11: 5, 7: 9, 4: 12, 2: 14, 1: 15},
+        {0: 1, 3: 4, 5: 7, 6: 6, 9: 9, 12: 15, 10: 12, 15: 14, 13: 2, 14: 3, 2: 13, 8: 8, 11: 5, 4: 10, 7: 11, 1: 16},
+        {0: 1, 3: 4, 5: 7, 6: 6, 9: 11, 12: 13, 10: 10, 15: 16, 13: 2, 14: 3, 8: 8, 11: 5, 7: 9, 4: 12, 1: 14, 2: 15}]
+
+    n = 4
+    for s in some_sols:
+        for row in range(n):
+            for col in range(n):
+                print(str((s[row * n + col])), end=' ')
+            print("")
+        print("")
+    """
+
     MS(4).getSolution()
 
 
