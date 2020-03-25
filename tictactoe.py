@@ -47,12 +47,14 @@ def check_player(player):
         return 0
 
 
-def check_stalemate():
+def check_stalemate(stale_board=None):
     # check if the board is full and the game is over
+    if stale_board is None:
+        stale_board = board
     is_stalemate = True
-    for i in range(len(board)):
-        for j in range(len(board[i])):
-            if board[i][j] == '':
+    for i in range(len(stale_board)):
+        for j in range(len(stale_board[i])):
+            if stale_board[i][j] == '':
                 is_stalemate = False
     return is_stalemate
 
@@ -76,7 +78,7 @@ def minimax(m_board, depth, isMaximizing):
                 2] == player) or  # tl to br diag
             (curr_board[2][0] == player and curr_board[1][1] == player and curr_board[0][
                 2] == player)):  # bl to tr diag
-        return depth
+        return scores[ai]
     player = human
     if ((curr_board[0][0] == player and curr_board[1][0] == player and curr_board[2][0] == player) or  # left
             (curr_board[0][1] == player and curr_board[1][1] == player and curr_board[2][1] == player) or  # center
@@ -88,7 +90,9 @@ def minimax(m_board, depth, isMaximizing):
                 2] == player) or  # tl to br diag
             (curr_board[2][0] == player and curr_board[1][1] == player and curr_board[0][
                 2] == player)):  # bl to tr diag
-        return depth
+        return scores[human]
+    elif check_stalemate(curr_board):
+        return scores['tie']
     # find the empty cells in our current board
     cells = []
     for i in range(len(curr_board)):
@@ -105,23 +109,26 @@ def minimax(m_board, depth, isMaximizing):
             # recurse
             value = minimax(curr_board_nest, depth + 1, False)
             best_val = max(best_val, value)
-        return best_val
+        #print(best_val)
+        return best_val * depth
     # MIN
     else:
         best_val = p_inf
         for move in cells:
             curr_board_nest = copy.deepcopy(curr_board)
-            curr_board_nest[move[0]][move[1]] = ai
+            curr_board_nest[move[0]][move[1]] = human
             # recurse
             value = minimax(curr_board_nest, depth + 1, True)
             best_val = min(best_val, value)
-        return best_val
+        return best_val * depth
 
 
 def print_board():
     for i in range(len(board)):
         for j in range(len(board[i])):
             print(board[i][j], end="")
+            if board[i][j] == '':
+                print(" ", end="")
             if j + 1 != len(board[i]):
                 print("  |  ", end="")
         if i + 1 != len(board):
