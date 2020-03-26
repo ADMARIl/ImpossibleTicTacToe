@@ -17,7 +17,7 @@ class MS:
         n = self.size
 
         exact_sum = n * (n ** 2 + 1) / 2
-        print(exact_sum)
+        # print(exact_sum)
         # Adding Variables
         self.pr.addVariables(range(0, n ** 2), range(1, (n ** 2) + 1))
 
@@ -27,12 +27,12 @@ class MS:
         tl_to_br = [0]
         for i in range(n - 1):
             tl_to_br.append(tl_to_br[i] + n + 1)
-        print("TL to BR is", tl_to_br)
+        # print("TL to BR is", tl_to_br)
 
         tr_to_bl = [n - 1]
         for i in range(n - 1):
             tr_to_bl.append(tr_to_bl[i] + n - 1)
-        print("TR to BL is", tr_to_bl)
+        # print("TR to BL is", tr_to_bl)
 
         self.pr.addConstraint(ExactSumConstraint(exact_sum), tl_to_br)
         self.pr.addConstraint(ExactSumConstraint(exact_sum), tr_to_bl)
@@ -59,7 +59,7 @@ class MS:
             print("")
 
 
-def main():
+if __name__ == "__main__":
     """
     some_sols = [
         {0: 1, 3: 4, 5: 6, 6: 7, 9: 9, 12: 14, 10: 12, 15: 15, 13: 3, 14: 2, 2: 13, 7: 10, 11: 5, 8: 8, 4: 11, 1: 16},
@@ -76,7 +76,5 @@ def main():
         print("")
     """
 
-    MS(6).getSolution()
-
-
-main()
+    # run magic square solve
+    MS(3).getSolution()
