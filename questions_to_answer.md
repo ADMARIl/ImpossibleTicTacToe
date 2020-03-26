@@ -25,7 +25,7 @@
 
 (c) Can you get a solution for a magic square of size six using any of the solvers and if so, how long does it take? Do you think that using CSP is a good approach for generating magic squares? Why or why not.
 
-- I did get a solution for a magic square for a size six, it took about an hour for it to complete. Compared to other approaches such as a State Space Search, using a CSP is a good approach for generating magic squares as other approaches would take far longer due to the sheer number of possible states
+- I unable get a solution for a magic square for a size six, as it the time it was taking to solve exceeded the time I had available for the assignment. This does not however mean that a solution is not possible. I think that compared to other approaches such as a State Space Search, using a CSP is a good approach for generating magic squares as other approaches would take far longer due to the sheer number of possible states
 
 
 > For this assignment I collaborated with [Chase Carbaugh](https://github.com/chasec1)
