@@ -21,7 +21,7 @@
 
 (b ) Note that the MinConflicts() solver fails to solve even the smallest problem. Think about how this strategy works and explain why MinConflicts() does not work well for this problem.
 
-- For this problem type, there is no possible way to 'minimize' the problem (i.e. you either have the sum or you do not)
+- For this problem type, there is no possible way to 'minimize' the problem (i.e. you either have the sum or you do not) so a MinConflicts() solver would fail to work here.
 
 (c) Can you get a solution for a magic square of size six using any of the solvers and if so, how long does it take? Do you think that using CSP is a good approach for generating magic squares? Why or why not.
 
