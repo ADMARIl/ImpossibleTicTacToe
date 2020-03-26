@@ -11,7 +11,7 @@ class MS:
     def __init__(self, size):
         # self.name = name
         self.size = size
-        self.pr = Problem(RecursiveBacktrackingSolver())
+        self.pr = Problem()
 
     def getSolution(self):
         n = self.size
@@ -28,6 +28,7 @@ class MS:
         for i in range(n - 1):
             tl_to_br.append(tl_to_br[i] + n + 1)
         print("TL to BR is", tl_to_br)
+
         tr_to_bl = [n - 1]
         for i in range(n - 1):
             tr_to_bl.append(tr_to_bl[i] + n - 1)
@@ -75,7 +76,7 @@ def main():
         print("")
     """
 
-    MS(4).getSolution()
+    MS(6).getSolution()
 
 
 main()

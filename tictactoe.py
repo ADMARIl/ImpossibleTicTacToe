@@ -3,6 +3,7 @@
 # Inspiration from AIMA,Russell,Novig, Shiffman
 # ######################################
 import copy
+import random
 
 # positive infinity
 p_inf = float("inf")
@@ -19,6 +20,10 @@ scores = {'X': 10, 'O': -10, 'tie': 0}
 ai = 'X'
 human = 'O'
 currentPlayer = human
+
+# only one of these can be true at once
+random_human_first_move = False
+ai_first = True
 
 
 def check_for_winner():
@@ -169,10 +174,17 @@ def main():
     # After every move check for a winner.
     # #####################################################
 
-    print("AI moves first!")
-    new_x, new_y = find_best_move()
-    board[new_x][new_y] = ai
-    print_board()
+    # do we make a random move for the human first?
+    if random_human_first_move and not ai_first:
+        print("Random Human Move!")
+        board[random.randint(0, 2)][random.randint(0, 2)] = human
+        print_board()
+    # does the ai move first?
+    elif ai_first and not random_human_first_move:
+        print("AI moves!")
+        new_x, new_y = find_best_move()
+        board[new_x][new_y] = ai
+        print_board()
 
     while check_for_winner() == 0 and not check_stalemate():
         usr_input = input("Which cell would you like to put an 'O' in?  starting from top left:0,0 0,1 0,2 1,0 1,1 1,"
