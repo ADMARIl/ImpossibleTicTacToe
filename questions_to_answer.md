@@ -7,6 +7,8 @@
 
 (c) What is the worst case time complexity for a 3 x 3 Tic-Tac-Toe game? Why?
 
+- The worst case time complexity would be O(9<sup>n</sup>). This is because at the very beginning of the game the board is completely empty so 9 possible moves must be completely considered with n representing the recursive number of moves made in each
+
 ## Write your answer here
 
 # (2) Heuristics for CSP 
@@ -23,9 +25,7 @@
 
 (c) Can you get a solution for a magic square of size six using any of the solvers and if so, how long does it take? Do you think that using CSP is a good approach for generating magic squares? Why or why not.
 
-- MinConflicts solver does not generate a solution
-- Backtracking solver does generate a solution
-- RecursiveBacktracking does not generate a solution
+- I did get a solution for a magic square for a size six, it took about an hour for it to complete. Compared to other approaches such as a State Space Search, using a CSP is a good approach for generating magic squares as other approaches would take far longer due to the sheer number of possible states
 
 
 > For this assignment I collaborated with [Chase Carbaugh](https://github.com/chasec1)

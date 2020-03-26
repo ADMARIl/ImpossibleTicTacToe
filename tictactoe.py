@@ -39,6 +39,7 @@ def check_for_winner():
 
 
 def check_player(player, c_board):
+    # check if the provided player won on the given board
     if ((c_board[0][0] == player and c_board[1][0] == player and c_board[2][0] == player) or  # left
             (c_board[0][1] == player and c_board[1][1] == player and c_board[2][1] == player) or  # center
             (c_board[0][2] == player and c_board[1][2] == player and c_board[2][2] == player) or  # right
