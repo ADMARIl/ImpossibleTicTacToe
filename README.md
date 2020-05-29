@@ -10,7 +10,7 @@
 </p>
 <p align="center">
     <a href="https://xkcd.com/832/">
-      <img alt="TicTacToe Example" src=https://imgs.xkcd.com/comics/tic_tac_toe.png" width="335" />
+      <img alt="TicTacToe Example" src="https://imgs.xkcd.com/comics/tic_tac_toe.png" width="335" />
     </a>
 </p>
 
