@@ -160,6 +160,43 @@ def find_best_move():
     return best_move
 
 
+def valid_input():
+    valid = False
+    input_x, input_y = 0, 0
+    # find all the empty slots in the board
+    empty_slot = ""
+    for i in range(3):
+        for j in range(3):
+            if board[i][j] == "":
+                empty_slot += str(i) + "," + str(j) + " "
+    # get user input and validate it
+    while not valid:
+        while True:
+            try:
+                prompt = "Which cell would you like to put an 'O' in? Empty cells starting from top left: " + empty_slot + "\n"
+                usr_input = input(prompt)
+                input_x, input_y = int(usr_input[0]), int(usr_input[2])
+                break
+            except ValueError:
+                print("Please enter a valid location in the format [number],[number].")
+            except IndexError:
+                print("Please enter a valid location in the format [number],[number].")
+
+        if input_x > 2 or input_x < 0:
+            print("Please enter a x coordinate between 0 and 2")
+            valid = False
+        elif input_y > 2 or input_y < 0:
+            print("Please enter a y coordinate between 0 and 2")
+            valid = False
+        elif board[input_x][input_y] != '':
+            print("Please enter an empty position on the board")
+            valid = False
+        else:
+            valid = True
+
+    return input_x, input_y
+
+
 def main():
     # ###################Your code here####################
     # Have 'X' make the first move.
@@ -180,14 +217,14 @@ def main():
         print_board()
 
     print("AI moves!")
-    new_x, new_y = find_best_move()
+    new_x, new_y = 0, 0  # find_best_move()
     board[new_x][new_y] = ai
     print_board()
 
     while check_for_winner() == 0 and not check_stalemate():
-        usr_input = input("Which cell would you like to put an 'O' in?  starting from top left:0,0 0,1 0,2 1,0 1,1 1,"
-                          "2 2,0 2,1 2,2\n")
-        board[int(usr_input[0])][int(usr_input[2])] = human
+        usr_x, usr_y = valid_input()
+
+        board[usr_x][usr_y] = human
         if check_for_winner() != 0 or check_stalemate():
             print_board()
             break

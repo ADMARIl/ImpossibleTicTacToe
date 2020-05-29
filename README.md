@@ -8,13 +8,16 @@
   This project was for my Introduction to Artificial Intelligence class at UMBC (CMSC 471). The project outline can be found 
   <a href="https://github.com/ADMARIl/ImpossibleTicTacToe/blob/master/ASSIGNMENT.md" target="_blank">here</a>.
 </p>
+<p align="center">
+    <a href="https://xkcd.com/832/">
+      <img alt="TicTacToe Example" src=https://imgs.xkcd.com/comics/tic_tac_toe.png" width="335" />
+    </a>
+</p>
 
-![example](https://imgs.xkcd.com/comics/tic_tac_toe.png)
 
 ## Installation
 
-1. If you already have [python3](https://www.python.org/downloads/) installed that all you'll need!
-
+* If you already have [python3](https://www.python.org/downloads/) installed that all you'll need!
 
 ## Building and Running
 
