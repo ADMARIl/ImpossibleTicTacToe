@@ -14,10 +14,12 @@
     </a>
 </p>
 
+[![Run on Repl.it](https://repl.it/badge/github/ADMARIl/ImpossibleTicTacToe)](https://repl.it/github/ADMARIl/ImpossibleTicTacToe)
+
 
 ## Installation
 
-* If you already have [python3](https://www.python.org/downloads/) installed that all you'll need!
+* If you already have [python3](https://www.python.org/downloads/) installed that's all you'll need!
 
 ## Building and Running
 
