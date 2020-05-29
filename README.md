@@ -22,9 +22,9 @@
 
 ## Building and Running
 
-* To factor a modulus, run part2 with the modulus as an argument
+* To factor a modulus, run tictactoe.py and you will be prompted for your move
     ```bash
-    python2 tictactoe.py
+    python3 tictactoe.py
     ```
   
 ## License
