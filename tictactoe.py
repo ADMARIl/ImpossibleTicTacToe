@@ -173,15 +173,17 @@ def valid_input():
     while not valid:
         while True:
             try:
+                # get user input
                 prompt = "Which cell would you like to put an 'O' in? Empty cells starting from top left: " + empty_slot + "\n"
                 usr_input = input(prompt)
                 input_x, input_y = int(usr_input[0]), int(usr_input[2])
                 break
+            # make sure the input is in the format we want
             except ValueError:
                 print("Please enter a valid location in the format [number],[number].")
             except IndexError:
                 print("Please enter a valid location in the format [number],[number].")
-
+        # check to see if the values are in range
         if input_x > 2 or input_x < 0:
             print("Please enter a x coordinate between 0 and 2")
             valid = False
