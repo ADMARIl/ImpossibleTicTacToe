@@ -22,7 +22,7 @@
 
 ## Building and Running
 
-* To factor a modulus, run tictactoe.py and you will be prompted for your move
+* To play a game, run tictactoe.py and you will be prompted for your move
     ```bash
     python3 tictactoe.py
     ```
